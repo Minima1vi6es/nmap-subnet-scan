@@ -12,8 +12,15 @@ subnet = f"{ip_base}/24"
 timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 scan_name = f"scan_{ip_base.replace('.', '-')}_{timestamp}"
 
+# Determine the correct user's home directory, even when using sudo
+if os.geteuid() == 0 and 'SUDO_USER' in os.environ:
+    actual_user = os.environ['SUDO_USER']
+    user_home = os.path.expanduser(f"/home/{actual_user}")
+else:
+    user_home = os.path.expanduser("~")
+
 # Output directory
-output_dir = os.path.expanduser("~/nmap-scans")
+output_dir = os.path.join(user_home, "nmap-scans")
 os.makedirs(output_dir, exist_ok=True)
 
 # Output paths
