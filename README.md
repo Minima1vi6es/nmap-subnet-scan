@@ -1,3 +1,6 @@
+![Nmap Subnet Scanner Banner](banner.png)
+
+
 # Nmap Subnet Scanner
 
 [![Built with Python](https://img.shields.io/badge/Built%20with-Python-blue?logo=python)](https://www.python.org/)
